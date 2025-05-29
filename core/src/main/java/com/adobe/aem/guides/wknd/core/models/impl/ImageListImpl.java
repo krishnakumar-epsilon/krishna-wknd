@@ -118,6 +118,16 @@ public class ImageListImpl implements ImageList {
         return ImmutableList.copyOf(imageListItems);
     }
 
+    public String getImageData() {
+        String path = "/content/abc/project/wknd/page1";
+        ResourceResolver resourceResolver = request.getResourceResolver();
+        Resource resource = resourceResolver.getResource(path);
+        PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
+        Page page = pageManager.getContainingPage(resource);
+        String image = page.getProperties().get("image", page.getDescription());
+        return image;
+    }
+
     @Override
     public final boolean isEmpty() {
         return getListItems().isEmpty();

@@ -256,10 +256,6 @@ public class ImageListImpl implements ImageList {
             componentResources.add(request.getResourceResolver().getResource(resource.getPath()));
         }
 
-        if (leakingResourceResolver != null) {
-            leakingResourceResolver.close();
-        }
-
         log.debug("Query searching for component of type [ {} ] over [ {} ] took [ {} ms ]", slingResourceType, page.getContentResource().getPath(), System.currentTimeMillis() - start);
 
         return componentResources;
